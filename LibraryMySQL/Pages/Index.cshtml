@@ -1,0 +1,45 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Connect Page";
+}
+
+<div class="d-flex flex-column justify-content-center align-content-center text-center">
+    <h1 class="display-3">Welcome!</h1>
+
+    <h5 class="mt-5 mb-2">Pass data to your MySQL server:</h5>
+
+    <form method="post" class="w-25 m-auto">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="UserSecrets.Server" class="control-label m-1"></label>
+            <input asp-for="UserSecrets.Server" placeholder="localhost?" class="form-control" />
+            <span asp-validation-for="UserSecrets.Server" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserSecrets.Port" class="control-label m-1"></label>
+            <input asp-for="UserSecrets.Port" min="1" placeholder="Propably 3306" class="form-control" />
+            <span asp-validation-for="UserSecrets.Port" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserSecrets.Database" class="control-label m-1"></label>
+            <input asp-for="UserSecrets.Database" placeholder="Schema name" class="form-control" />
+            <span asp-validation-for="UserSecrets.Database" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserSecrets.User" class="control-label m-1"></label>
+            <input asp-for="UserSecrets.User" placeholder="root?" class="form-control" />
+            <span asp-validation-for="UserSecrets.User" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserSecrets.Password" class="control-label m-1"></label>
+            <input asp-for="UserSecrets.Password" type="password" class="form-control" />
+            <span asp-validation-for="UserSecrets.Password" class="text-danger"></span>
+        </div>
+        <div class="form-group m-3">
+            <input type="submit" value="Connect" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <h3 class="text-danger mt-5">@Messages.ConnectionInfo</h3>
+</div>

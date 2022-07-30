@@ -1,0 +1,86 @@
+﻿@page
+@model LibraryMySQL.Pages.Library.BooksModel
+@{
+    ViewData["Title"] = "Library Page";
+}
+
+<h1>Library</h1>
+
+<p>
+    <a asp-page="Create">Add new book</a>
+</p>
+
+<form>
+    <p>
+        Title: <input type="text" onclick="this.setSelectionRange(0, this.value.length)" asp-for="SearchTitle"/> 
+        Authors: <input type="text" onclick="this.setSelectionRange(0, this.value.length)" asp-for="SearchAuthors" /> 
+        ISBN: <input type="text" onclick="this.setSelectionRange(0, this.value.length)" asp-for="SearchISBN" /> 
+        Format:
+        <select asp-for="BookFormat" asp-items="Model.Formats">
+            <option value="">All</option>
+        </select>
+        
+        <input type="submit" value="Search"  class="btn btn-primary"/>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].Authors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].ISBN)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Books[0].Format)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].Pages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Books) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Format)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
